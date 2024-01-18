@@ -4,7 +4,12 @@
   "description": "Juego de adivinar un número",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "rsync -ahv 'ssh -p 22123'",
+    "install": "npm install -g uglifycss html.minifier uglify.js",
+    "build": "npm run minify:css && npm run minify:html && npm run minify:js",
+        "build:css": "uglifycss src/*.css > dist/style.min.css",
+        "build:html": "html-minifier --collapse-whitespace --remove-comments --minify-css --minify-js src/*.html > dist/index.min.html",
+        "build:js": "uglifyjs src/*.js -o dist/script.min.js"
   },
   "devDependencies": {
     "eslint": "^8.56.0",
